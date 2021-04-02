@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
         ->orderBy('id', 'ASC')
         ->get();
 
-        
+        //dd('xxxx');
 
         View::share('master_category',[$category,$sub]);
     }

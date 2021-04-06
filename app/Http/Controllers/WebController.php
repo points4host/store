@@ -21,7 +21,7 @@ class WebController extends Controller
             ->join('images', function ($join) {
                 $join->on('products.id', '=', 'images.product_id')
                      ->where('products.is_active', '=', 1)
-                     ->where('images.is_master', '=', 0)
+                     ->where('images.is_master', '=', 1)
                      ->orderByDesc('images.is_master')
                      ->limit(1);
             })
@@ -96,7 +96,7 @@ class WebController extends Controller
             ->join('images', function ($join) {
                 $join->on('products.id', '=', 'images.product_id')
                      ->where('products.is_active', '=', 1)
-                     ->where('images.is_master', '=', 0)
+                     ->where('images.is_master', '=', 1)
                      ->orderByDesc('images.is_master')
                      ->limit(1);
             })

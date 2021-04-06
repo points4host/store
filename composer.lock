@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "de0aab1ba1c98d374c3ebed3c803420a",
+    "content-hash": "8b61d1712e7fa1baa375ccbc3cf7489e",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -439,6 +439,56 @@
                 "validator"
             ],
             "time": "2020-08-08T21:28:19+00:00"
+        },
+        {
+            "name": "essam/laravel-tap-payment",
+            "version": "v0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sfwanessam/laravel-tap-payment.git",
+                "reference": "5e1259004dd6e971d167412a2667b0d373df16d4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sfwanessam/laravel-tap-payment/zipball/5e1259004dd6e971d167412a2667b0d373df16d4",
+                "reference": "5e1259004dd6e971d167412a2667b0d373df16d4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "illuminate/support": "5.6.*|5.7.*|5.8.*|6.*|7.*|8.*",
+                "php": "^7.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Essam\\TapPayment\\TapServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Essam\\TapPayment\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sfwan Essam",
+                    "email": "sfwanessam9@gmail.com"
+                }
+            ],
+            "description": "Tap Payment SDK Package for PHP Laravel",
+            "support": {
+                "issues": "https://github.com/sfwanessam/laravel-tap-payment/issues",
+                "source": "https://github.com/sfwanessam/laravel-tap-payment/tree/v0.0.2"
+            },
+            "time": "2021-03-14T20:49:06+00:00"
         },
         {
             "name": "fideloper/proxy",
@@ -1905,6 +1955,10 @@
                     "homepage": "https://github.com/paypal/paypalhttp_php/contributors"
                 }
             ],
+            "support": {
+                "issues": "https://github.com/paypal/paypalhttp_php/issues",
+                "source": "https://github.com/paypal/paypalhttp_php/tree/1.0.0"
+            },
             "abandoned": true,
             "time": "2019-11-06T21:27:12+00:00"
         },

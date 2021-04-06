@@ -1,8 +1,23 @@
 @extends('Web.Header')
 
 @section('content')
-<link rel="stylesheet" href="{{asset('telephone/css/intlTelInput.css')}}">
 
+@if (!isset($product[0]))
+    
+<div class="container py-5 text-center text-muted">
+
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
+  <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+</svg>
+
+
+<p class="mt-3">لم تضف أي منتجات في لعربتك للأن</p>
+
+</div>
+
+@else
+
+<link rel="stylesheet" href="{{asset('telephone/css/intlTelInput.css')}}">
 
 @php
     $token_temporary_invoices = md5('temporary_invoices'.time());
@@ -63,30 +78,29 @@
         @foreach($product as $val)
             <hr class="featurette-divider">
             <div class="media mb-2">
-                <img src="{{asset('uploads/'.$val->images_name)}}" width="100" class="align-self-center mr-3" alt="...">
+                <img src="{{asset('uploads/'.$val['images_name'])}}" width="100" class="align-self-center mr-3" alt="...">
                 <div class="media-body">
-                    <p class="m-0 p-0">{{ $val->name }}</p>
-                    @if ($val->is_discount_active == 1)
-                        @if (date('Y-m-d') <= date($val->end_date))
-                            <p class="m-0 p-0 text-danger">{{ $val->price_after_discount }} ريال</p>
-                            <input type="number" id="cart_unit_price_{{$val->id}}" hidden="hidden" value="{{$val->price_after_discount}}">
+                    <p class="m-0 p-0">{{ $val['name'] }}</p>
+                    @if ($val['is_discount_active'] == 1)
+                        @if (date('Y-m-d') <= date($val['end_date']))
+                            <p class="m-0 p-0 text-danger">{{ $val['price_after_discount'] }} ريال</p>
+                            <input type="number" id="cart_unit_price_{{$val['id']}}" hidden="hidden" value="{{$val['price_after_discount']}}">
                         @else
-                        <p class="m-0 p-0 text-danger">{{ $val->unit_price }} ريال</p>
-                        <input type="number" id="cart_unit_price_{{$val->id}}" hidden="hidden" value="{{$val->unit_price}}">
+                        <p class="m-0 p-0 text-danger">{{ $val['unit_price'] }} ريال</p>
+                        <input type="number" id="cart_unit_price_{{$val['id']}}" hidden="hidden" value="{{$val['unit_price']}}">
                         @endif
                     @else
-                        <p class="m-0 p-0 text-danger">{{ $val->unit_price }} ريال</p>
-                        <input type="number" id="cart_unit_price_{{$val->id}}" hidden="hidden" value="{{$val->unit_price}}">
+                        <p class="m-0 p-0 text-danger">{{ $val['unit_price'] }} ريال</p>
+                        <input type="number" id="cart_unit_price_{{$val['id']}}" hidden="hidden" value="{{$val['unit_price']}}">
                     @endif
                     <p class="m-0 p-0 text-success"><small>متوفر</small></p>
                 </div>
             </div>
             <div class="input-group mb-3 cart_input">
-                <button type="button" class="btn nhnyn" onclick="decrease_product_frome_cart('{{ route('cart.decrease',$val->id)}}')" style="width: 20%;">-</button>
-                <input type="number" id="cart_items_quantity_{{$val->id}}" min="1" class="form-control text-center text-primary" placeholder="1" value="{{$val->cart_items_quantity}}" />
-                <button type="button" class="btn nhnyn" onclick="increase_product_frome_cart('{{ route('cart.increase',$val->id)}}')" style="width: 20%;">+</button>
-
-                <button type="button" class="btn nhnyn mx-4" onclick="destroy_product_frome_cart('{{ route('cart.destroy',$val->id)}}')" style="width: 20%;"><small><b>حذف</b></small></button>
+                <button type="button" class="btn nhnyn" onclick="decrease_product_frome_cart('{{ route('cart.decrease',$val['id'])}}')" style="width: 20%;">-</button>
+                <input type="number" id="cart_items_quantity_{{$val['id']}}" min="1" class="form-control text-center text-primary" placeholder="1" value="{{$val['cart_items_quantity']}}" />
+                <button type="button" class="btn nhnyn" onclick="increase_product_frome_cart('{{ route('cart.increase',$val['id'])}}')" style="width: 20%;">+</button>
+                <button type="button" class="btn nhnyn mx-4" onclick="destroy_product_frome_cart('{{ route('cart.destroy',$val['product_id'])}}')" style="width: 20%;"><small><b>حذف</b></small></button>
             </div>
         @endforeach
         <hr class="featurette-divider">
@@ -439,7 +453,7 @@ function set_go_pay() {
             email: false,
             sms: false
           },
-          redirect: "<?php echo route('cart.go_redirect',$token_temporary_invoices); ?>",
+          redirect: "<?php echo route('cart.redirect',$token_temporary_invoices); ?>",
           post: null,
         }
      }
@@ -448,4 +462,5 @@ function set_go_pay() {
 
 
 </script>
+@endif
 @endsection

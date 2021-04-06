@@ -42,8 +42,6 @@ Route::get('/', function () {
 
 /// بداية كود الواجهة الرئيسية
 
-
-
 Route::get('/','WebController@index')->name('Web.index');
 
 // عرض التصنيفات
@@ -74,8 +72,7 @@ Route::get('/cart_count','CartController@cart_count')->name('cart.cart_count');
 Route::post('/cart_increase/{id}','CartController@increase')->name('cart.increase');
 Route::post('/cart_decrease/{id}','CartController@decrease')->name('cart.decrease');
 Route::post('/cart_go_pay','CartController@cart_go_pay')->name('cart.go_pay');
-Route::get('/cart_go_redirect/{id}','CartController@cart_go_redirect')->name('cart.go_redirect');
-Route::post('/cart_go_response','CartController@cart_go_response')->name('cart.go_response');
+Route::get('/cart_redirect/{id}','CartController@cart_redirect')->name('cart.redirect');
 /// نهاية كود الواجهة الرئيسية
 
 

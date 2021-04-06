@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('favicon.png')}}" />
-    <link href='http://fonts.googleapis.com/earlyaccess/droidarabickufi.css' rel='stylesheet' type='text/css'/>
+    <link rel="icon" type="image/png" href="{{asset('favicon.jpg')}}" />
+    <link rel="apple-touch-icon-precomposed" href="{{asset('favicon.jpg')}}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" href="{{asset('favicon.jpg')}}">
+
+    <link href='https://fonts.googleapis.com/earlyaccess/droidarabickufi.css' rel='stylesheet' type='text/css'/>
     <script src="{{asset('js/sweetalert2.min.js')}}"></script>
     <link rel="stylesheet" href="{{asset('css/sweetalert2.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
@@ -25,6 +29,15 @@
     href="https://goSellJSLib.b-cdn.net/v1.4.1/css/gosell.css"
     rel="stylesheet"
   />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J9LXDG3EXE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J9LXDG3EXE');
+</script>
 <style>
 * { margin: 0; padding: 0; outline:0; }
 body {
@@ -295,8 +308,7 @@ color: #40babd
     <div class="row">
       <div class="col">
         <h6 class="text-success font-weight-bolder">من نحن</h6>
-        مؤسسة تجارية مرخصة من قبل وزارة التجارة نبيع البهارات 
-          بشتاء انواعها فروعنا في المملكه العربية السعودية
+        مؤسسة تجارية مرخصة من قبل وزارة التجارة
       </div>
       <div class="col">
         <h6 class="text-success font-weight-bolder">روابط مهمة</h6>
@@ -377,9 +389,12 @@ function add_product_to_cart (vali_url){
       var json = JSON.parse(ajax.responseText);
       $('#Modal_add_product_to_cart').modal('hide')
       if(json['verify'] == 'success'){
-        document.getElementById("Number_of_products_in_the_Cart").innerHTML = json['count'];
+        var valu_inpt = document.getElementById("set_Number_of_products_in_the_Cart").value;
+        document.getElementById("Number_of_products_in_the_Cart").innerHTML = parseFloat(valu_inpt) + 1;
+        document.getElementById("set_Number_of_products_in_the_Cart").value = parseFloat(valu_inpt) + 1;
       }else{
         //alert('المنتج غير متوفر');
+
       }
     }
   }
@@ -486,6 +501,7 @@ $(document).ready(function(){
       var json = JSON.parse(ajax.responseText);
       if(json['verify'] == 'success'){
         document.getElementById("Number_of_products_in_the_Cart").innerHTML = json['count'];
+        document.getElementById("set_Number_of_products_in_the_Cart").value = json['count'];
       }else{
         //
       }

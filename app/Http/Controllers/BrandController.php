@@ -49,7 +49,7 @@ class BrandController extends Controller
         
         $url_pagination = $db->path().'?orderby='.$orderby.'&order_value='.$order_value.'&perpage='.$perpage.'&page=';
 
-        return view('Admin.Pages.Brand.Brand_index',
+        return view('Admin.Pages.Brand.Brand_Index',
         compact(['db','role_permission','perpage','url_pagination','order_value','html_orderby','css_orderby']));
     }
 

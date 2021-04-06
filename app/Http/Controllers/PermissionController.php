@@ -57,7 +57,7 @@ class PermissionController extends Controller
 
         $url_pagination = $role->path().'?orderby='.$orderby.'&order_value='.$order_value.'&perpage='.$perpage.'&page=';
 
-        return view('Admin.Pages.Permission.Permission_index',
+        return view('Admin.Pages.Permission.Permission_Index',
         compact(['role','role_permission','perpage','url_pagination','order_value','html_orderby','css_orderby']));
     }
     public function add()

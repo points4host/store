@@ -156,7 +156,7 @@
         </div>
         <div class="pt-2">
             <a href="{{asset('./')}}" class="mr-2 text-decoration-none text-dark">
-                <img src="{{asset('icons/a4.png')}}" class="img-fluid" height="32" width="32" alt="Responsive image">
+                <img src="{{asset('logo.jpg')}}" class="img-fluid rounded-circle" height="32" width="32" alt="Responsive image">
             </a>
             <a href="{{asset('./')}}" class="mr-2 text-decoration-none text-dark">متجر صافي</a>
         </div>
@@ -181,6 +181,7 @@
 --}}
             <a href="{{ route('cart.index') }}" class="text-secondary float-right mx-2" style="color:#000;cursor: pointer;text-decoration: none;">
                 <span class="badge badge-pill badge-danger" style="zoom: 1.2" id="Number_of_products_in_the_Cart">0</span>
+                <input type="number" id="set_Number_of_products_in_the_Cart" hidden="hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="25" height="25" viewBox="0 0 24 24" stroke-width="1" stroke="#000" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                     <circle cx="9" cy="19" r="2" />

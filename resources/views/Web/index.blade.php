@@ -203,7 +203,7 @@
 
 
 <div class="container pt-2">
-  <div class="row">
+  <div class="row p-1">
       @foreach($product as $val)
       @php
           $count_products = $val->quantity - $val->quantity_sold;
@@ -211,7 +211,7 @@
       @if (!$count_products <= 0)
           
       
-      <div id="grid_mobile" class="mb-3 col-6 col-lg-3 col-sm-4">
+      <div id="grid_mobile" class="mb-3 col-6 col-lg-3 col-sm-4" style="padding: 0px 5px 0px 5px;">
         <div class="card card_Producer border-0" style="position: relative;border-radius: 10px;">
             <p class="py-0 px-2 bg-success text-white" style="position: absolute;border-radius: 10px 0px 0px 10px;">
               <small>{{ $val->weight }} {{ $val->measurements_name }}</small>
@@ -224,9 +224,19 @@
                     </p>
                   @endif
               @endif
+
             <div class="mb-2">
-              <a class="nav-link" href="{{ route('Web.product',$val->id)}}">
-                <img src="{{asset('uploads/'.$val->images_name)}}" class="img-fluid card-img-top w-100" alt="Responsive image" style="border-radius: 10px 10px 0px 0px;" id="image_product_height">
+              <a class="nav-link" style="text-align: center" href="{{ route('Web.product',$val->id)}}">
+                <style>
+                  .img_webs {
+                    border-radius: 10px 10px 0px 0px;
+                    width: 100px;
+                    height: 180px;
+                    object-fit: fill;
+                    padding: 15px 30px 0px 30px;
+                  }
+                </style>
+                <img src="{{asset('uploads/'.$val->images_name)}}" class="img-fluid card-img-top img_webs w-100" alt="Responsive image" id="image_product_height">
               </a>
               </div>
             <div class="card-block">
@@ -271,9 +281,9 @@
   var grid_mobile = 6;
     if(ws_width  < 400 ){
       ws_per = 2;
-      //document.getElementById("image_product_height").height = "200px";
+      //document.getElementById("image_product_height").style.height = "100px";
     }else{
-      //document.getElementById("image_product_height").height = "200px";
+      //document.getElementById("image_product_height").style.height = "200px";
     }
 
     var swiper = new Swiper('.swiper-container',{

@@ -48,7 +48,7 @@ class MeasurementController extends Controller
         
         $url_pagination = $db->path().'?orderby='.$orderby.'&order_value='.$order_value.'&perpage='.$perpage.'&page=';
 
-        return view('Admin.Pages.Measurement.Measurement_index',
+        return view('Admin.Pages.Measurement.Measurement_Index',
         compact(['db','role_permission','perpage','url_pagination','order_value','html_orderby','css_orderby']));
     }
 
